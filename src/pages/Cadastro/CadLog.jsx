@@ -1,16 +1,18 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { All } from '../../Style/all';
 import { Button } from '../Components/buttons/buttons';
 import { DropFile, Inputs } from '../Components/inputs/inputs';
-import { Adjust, AdjustImg, AdjustLogin, CadAlign, Cadastrar } from './style';
+import { Adjust, AdjustImg, AdjustLogin, CadAlign, Cadastrar, Errado } from './style';
 import { AxiosUser } from '../../services/axios';
 import noProfile from '../../assets/noProfile.jpg'
-
+import validator from 'validator'
 export function Cadastro(){
 
     const[values, setValues] = useState();
     const[image, setImage] = useState(1)
     const[handleImg, setHandleImg] = useState(noProfile)
+    const[email, setEmail] = useState()
+    const [disappear, setDisappear] = useState(values)
 
     const HandleChangeValues = (value) =>{
         setValues(prevValue =>({
@@ -19,9 +21,24 @@ export function Cadastro(){
         }))
     };
 
+    useEffect(()=>{
+        setEmail(false)
+    },[values])
+
     const GetImg = (value) =>{
         setImage(value.target.files[0]) 
         setHandleImg(URL.createObjectURL(value.target.files[0]))
+    }
+
+    const Validar = () =>{
+        if(values.email == '' || values.senha == '' || values.nome == ''){
+            setEmail('Email, nome ou senha inválido!')
+            console.log(image)
+        }else if(validator.isEmail(values.email)){
+            new AxiosUser().axiosIns(values, image)
+        }else{
+            setEmail('Email inválido!')
+        }
     }
 
     return(
@@ -31,11 +48,11 @@ export function Cadastro(){
                 <CadAlign>
                     <Cadastrar>
                         <h1>Crie sua conta</h1>
-
+                        
                         <AdjustImg>
                             <img src={handleImg}/>
                         </AdjustImg>
-
+                        
                         <Adjust>
                             <DropFile 
                                 id='imagem' 
@@ -52,7 +69,7 @@ export function Cadastro(){
                                 seletor={1} 
                                 id="nome" 
                                 name="nome" 
-                                type="email" 
+                                type="text" 
                                 placeholder="Nome completo" 
                                 onChange={HandleChangeValues}
                             />
@@ -67,7 +84,10 @@ export function Cadastro(){
                                 placeholder="Seu email" 
                                 onChange={HandleChangeValues} 
                             />
+                            
                         </Adjust>
+                        
+        
                         <Adjust>
                             <Inputs 
                                 seletor={3} 
@@ -78,11 +98,13 @@ export function Cadastro(){
                                 onChange={HandleChangeValues}
                             />
                         </Adjust>
-                       
+
+                        {email && <Errado>{email}</Errado>}
+
                         <Adjust>
                             <Button 
-                                type="submit" 
-                                onClick={() => new AxiosUser().axiosIns(values, image)} 
+                                type="button" 
+                                onClick={() => Validar()} 
                                 texto="Cadastrar"
                             />
                         </Adjust>
@@ -138,10 +160,6 @@ export function Login(){
                                 <Button type="button" onClick={() => HandleClickButton()} texto="Enviar"/>
                             </Adjust>
                         </AdjustLogin>
-                        
-                        <a type="submit" href="#">
-                            <h3>Esqueceu a senha?</h3>
-                        </a>
                         
                         <h3>Ainda não tem cadastro?</h3> 
                         

@@ -15,7 +15,7 @@ export function UserPage(){
     const [livs, setLivs] = useState('')
 
     useEffect(() => {
-        new AxiosUser().axiosGet(params.nome).then((response)=>{
+        new AxiosUser().axiosGet(params.userID).then((response)=>{
             console.log(response)
             setUser(response.user)
             setLivs(response.liv)
@@ -24,31 +24,32 @@ export function UserPage(){
     
     
     if(user !== undefined){ 
-        try {
-            if(user.nome == getToken().nome){ 
-                return(
+            if(getToken()){
+                if(user.nome == getToken().nome){ 
+                    return(
+                            <All>
+                                <App />
+                                <MyProfile user={user} liv={livs} /> 
+                      
+                            </All>
+                    )
+                }else if(user){
+                    return(    
                         <All>
                             <App />
-                            <MyProfile user={user} liv={livs} /> 
-                  
+                                <OtherUser user={user} liv={livs} />  
                         </All>
+                    )
+                }  
+            } else{
+                return(    
+                    <All>
+                        <App />
+                            <OtherUser user={user} liv={livs} />  
+                    </All>
                 )
             }
-        } 
-        catch (error) 
-        {
-            return(    
-                <All>
-                    <App />
-                        <OtherUser user={user} liv={livs} />  
-             
-                </All>
-
-            )
- 
-        }
-      
-           
+                   
     }else{
         return(    
                 <All>

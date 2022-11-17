@@ -3,16 +3,29 @@ import { All } from "../../../Style/all"
 import { Button2 } from "../buttons/buttons"
 import { ProfileAlign, Nome, IMGProfile, Info, Obras, Profile, Inf, UserSobreContent, ContentUser} from "./style"
 import { AxiosUser } from "../../../services/axios"
-import { Data } from "../../../services/utils"
 import { BookAlign, Capa, Delimitar } from "../bookContent/style"
-import { SobreContent } from "../../Sobre/Style"
-import { Books, Content } from "../../Home/Style"
+import { Books, CapaH, Content } from "../../Home/Style"
 
 export function OtherUser({user, liv}){
     const imgU = user.pathImg
 
-    const update = () =>{
-        window.location.replace('Perfil/../Update')
+    const Obras = ()=>{
+        if(!liv){
+            return(<></>)
+        }else{
+            return(typeof liv !== 'undefined' && liv.map((value)=>{
+                return(
+                    <Books key={value.postID}>
+                        <a href={`/Livro/${value.postID}`}>
+                            <CapaH src={value.pathImg}/>
+                            <h3>{value.titulo}</h3>
+                        </a>
+                    </Books>
+                    )}
+            ))
+        }
+        
+        
     }
 
     return(
@@ -25,27 +38,19 @@ export function OtherUser({user, liv}){
                         <img src={imgU}></img>
                      
 
-                        <Nome>{getToken().nome}</Nome>
+                        <Nome>{user.nome}</Nome>
                    </ProfileAlign>
                 </Profile>
 
                 <Info>
                         <Delimitar>
-                            <h1>Conta criada em: {getToken().insertDate}</h1>
-                        </Delimitar>           
+                            <h1>Conta criada em: {user.insertDate}</h1>
+                        </Delimitar>
+                   
                 </Info>
 
                     <ContentUser>
-                        {typeof liv !== 'undefined' && liv.map((value)=>{
-                                    return(
-                                        <Books key={value.postID}>
-                                            <a href={`/Livro/${value.titulo}`}>
-                                                <Capa src={value.pathImg}/>
-                                                <h3>{value.titulo}</h3>
-                                            </a>
-                                        </Books>
-                                        )}
-                                )}
+                        {Obras()}
                     </ContentUser>
                 
             </UserSobreContent>
@@ -61,6 +66,26 @@ export function MyProfile({user, liv}){
         window.location.replace('Perfil/../Update')
     }
 
+    const Obras = ()=>{
+        console.log(!liv)
+        if(liv){
+            return(<></>)
+        }else{
+            return(typeof liv !== 'undefined' && liv.map((value)=>{
+                return(
+                    <Books key={value.postID}>
+                        <a href={`/Livro/${value.postID}`}>
+                            <CapaH src={value.pathImg}/>
+                            <h3>{value.titulo}</h3>
+                        </a>
+                    </Books>
+                    )}
+            ))
+        }
+        
+        
+    }
+
     return(
         <BookAlign>
             <UserSobreContent>
@@ -71,13 +96,13 @@ export function MyProfile({user, liv}){
                         <img src={imgU}></img>
                      
 
-                        <Nome>{getToken().nome}</Nome>
+                        <Nome>{user.nome}</Nome>
                    </ProfileAlign>
                 </Profile>
 
                 <Info>
                         <Delimitar>
-                            <h1>Conta criada em: {getToken().insertDate}</h1>
+                            <h1>Conta criada em: {user.insertDate}</h1>
                         </Delimitar>
 
                         
@@ -99,16 +124,7 @@ export function MyProfile({user, liv}){
                 </Info>
 
                     <ContentUser>
-                        {typeof liv !== 'undefined' && liv.map((value)=>{
-                                    return(
-                                        <Books key={value.postID}>
-                                            <a href={`/Livro/${value.titulo}`}>
-                                                <Capa src={value.pathImg}/>
-                                                <h3>{value.titulo}</h3>
-                                            </a>
-                                        </Books>
-                                        )}
-                                )}
+                        {Obras()}
                     </ContentUser>
                 
             </UserSobreContent>

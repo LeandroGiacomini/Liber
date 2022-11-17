@@ -12,6 +12,7 @@ export class FilesCtrl{
     } 
 
     static async ImgInsert(req, res){
+        console.log(req.file)
         const { originalname, location, key } = req.file
         const response = await new ImgModel( originalname, location, key).insert() 
         return res.status(200).json(response)

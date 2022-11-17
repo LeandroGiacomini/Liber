@@ -30,7 +30,7 @@ export function App() {
                             <a href='/Sobre' className='link'>Sobre</a>
                         </Link>
                         <Link>
-                            <a href={`/Perfil/${getToken().nome}`} className='link'>{getToken().nome}</a>
+                            <a href={`/Perfil/${getToken().userID}`} className='link'>{getToken().nome}</a>
                         </Link>
                     </Links>
                 </Navbar>

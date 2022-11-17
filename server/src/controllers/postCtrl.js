@@ -20,7 +20,7 @@ export class PostCtrl{
 
         try {
             const {nome, desc, livID, statusPost,userID, postID } =  req.body
-            const response = await new PostModel(nome).GetFilter()
+            const response = await new PostModel( nome, desc, livID, statusPost,userID, postID).GetFilter()
             return res.status(200).json(response)    
         } 
         catch (error) 

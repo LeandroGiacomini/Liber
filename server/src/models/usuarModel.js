@@ -65,7 +65,8 @@ export class Usuar{
         try {
             const { recordset } = await con.query(`select nome, us.insertDate, fkImg, nomePlum, statusUser, userID, pathImg from usuar as us 
             inner join img as i on(us.fkImg = i.imgID)
-            where nome = '${this.nome}' and statusUser = 1`)
+            where userID = '${this.userID}' and statusUser = 1`)
+            console.log(recordset)
             return recordset
         } 
         catch (error)
@@ -134,10 +135,10 @@ export class Usuar{
 
     async getImg(){
         try {
-            const { recordset } = await con.query(`select pathImg as imgU from usuar as us 
+            const { recordset } = await con.query(`select pathImg from usuar as us 
             inner join img as i on(us.fkImg = i.imgID)
             where userID = ${this.userID} and statusUser = 1`)
-            
+    
             return recordset 
             
         } 

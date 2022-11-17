@@ -87,7 +87,7 @@ export class PostModel {
                 inner join liv as l on(pt.fkLiv = l.livID)
                 inner join genPos as gp on(pt.postID = gp.fkPos)
                 inner join gen as g on (gp.fkGen = g.genID)
-                where statusUser = 1 and statusPost = 1 and statusLiv = 1 and statusImg = 1 and titulo = '${this.nome}'`) 
+                where statusUser = 1 and statusPost = 1 and statusLiv = 1 and statusImg = 1 and postID = '${this.postID}'`) 
                 return recordset 
             
         } 

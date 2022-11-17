@@ -7,7 +7,7 @@ import { AxiosUser } from '../../services/axios.jsx';
 import { All } from '../../Style/all.jsx';
 import { Foter } from '../Components/footer/Footer.jsx';
 import { App } from '../Components/Navbar/Navbar.jsx';
-import { Alinhar, Books, Capa, Centraliza, Content, Margem, Separar } from './Style.jsx';
+import { Alinhar, Books, CapaH, Centraliza, Content, Margem, Separar } from './Style.jsx';
 
 export function Home(){
     
@@ -43,8 +43,8 @@ export function Home(){
                                 {typeof post !== 'undefined' && post.map((value)=>{
                                     return(
                                         <Books key={value.postID}>
-                                            <a href={`/Livro/${value.titulo}`}>
-                                                <Capa src={value.pathImg}/>
+                                            <a href={`/Livro/${value.postID}`}>
+                                                <CapaH src={value.pathImg}/>
                                                 <h3>{value.titulo}</h3>
                                             </a>
                                         </Books>

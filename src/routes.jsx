@@ -22,12 +22,12 @@ export function Rotas(){
                         <Route path="/Cadastro" element={<Cadastro />}></Route>
 
 
-                        <Route path="/Perfil/:nome" element={<UserPage />}></Route>
+                        <Route path="/Perfil/:userID" element={<UserPage />}></Route>
                         <Route path="/Perfil/Update" element={<Update />}></Route>
 
                         <Route path="/Post/Create" element={<Postar />}></Route>
 
-                        <Route path="/Livro/:titulo" element={<Livro />}></Route>
+                        <Route path="/Livro/:postID" element={<Livro />}></Route>
 
                     </Routes>
                 

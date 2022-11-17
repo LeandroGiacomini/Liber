@@ -87,3 +87,21 @@ export const AdjustLogin = styled.div`
     justify-content: center;
 
 `
+
+export const Errado = styled.p`
+
+    background-color: whitesmoke;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 85%;
+    height: 100%;
+    max-height: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: ${Terciaria};
+
+`

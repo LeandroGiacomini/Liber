@@ -23,7 +23,7 @@ routes.post('/img/insert', Multer(multerConfig).single('file'), FilesCtrl.ImgIns
 routes.get('/img/get', FilesCtrl.GetImg)
 routes.delete('/img/del/:imgID', FilesCtrl.deleteImg)
  
-routes.get('/gen/get', GenCtrl.GetGen)
+routes.get('/gen/get', GenCtrl.GetGen) 
 
 routes.post('/liv/insert', Multer(multerConfig).single('file'), FilesCtrl.LivIns)
 

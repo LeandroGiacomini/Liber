@@ -54,7 +54,7 @@ export class AxiosUser{
         
         try {
             
-            const user = await new AxiosCrud().Insert('/usuario/getProfile', {nome: nome})
+            const user = await new AxiosCrud().Insert('/usuario/getProfile', {userID: nome})
             const usuario = user.data[0]
 
             const post = await new AxiosCrud().Insert('/post/getFilterUser', {userID: usuario.userID})
@@ -148,11 +148,21 @@ export class AxiosUser{
         }
     }
 
-    async axiosAlter(inf){
+    async axiosAlter(inf, image){
         try {
+
+            const formData = new FormData()
+
+            formData.append('file', image)
+
+            formData.append('name', image.name)
+
+            const img = await new AxiosCrud().Insert('/img/insert', formData, Config())
+            const newImg = img.data[0].imgID
+
             const teste = {
                 email: inf.email,
-                fkImg: inf.fkImg,
+                fkImg: newImg,
                 insertDate: getToken().insertDate,
                 modDate: Data(),
                 nome: inf.nome,
@@ -161,10 +171,9 @@ export class AxiosUser{
                 userID: getToken().userID
             }
             
-            console.log(teste)
             Axios.put(`${localhost}/usuario/update/${getToken().userID}`,{
                 statusUser: 1,
-                fkImg: 1,
+                fkImg: newImg,
                 email: inf.email,
                 nome: inf.nome,
                 senha: inf.senha
@@ -308,10 +317,10 @@ export class AxiosUser{
     }
 
     async axiosLiv(params){
-        const liv = await new AxiosCrud().Insert('/post/getFilter', {nome: params})
+        const liv = await new AxiosCrud().Insert('/post/getFilter', {postID: params})
         const dadosLiv = liv.data[0]
 
-        const img = await new AxiosCrud().Get('/usuario/getImg', {userID: dadosLiv.userID})
+        const img = await new AxiosCrud().Insert('/usuario/getImg', {userID: dadosLiv.userID})
         const imgU = img.data[0]
 
         const coment = await new AxiosCrud().Insert('/coment/get', {fkPost: dadosLiv.postID})

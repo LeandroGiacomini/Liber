@@ -9,7 +9,7 @@ export const Ajuste = styled.div`
     justify-content: center;
 
     #ResumeContainer {
-    margin:auto;
+    
     width: 100%;
     background-color: ${Secundario};
     display: flex;

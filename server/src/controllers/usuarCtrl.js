@@ -21,8 +21,8 @@ export class UsuarController{
 
     static async getUserProfile(req, res){
         try {
-                const { email, senha, nome, nomePlum, modDate, fkImg} = req.body
-                const usuario = await new Usuar(email, senha, nome, nomePlum, modDate,fkImg).getProfile()
+                const { email, senha, nome, nomePlum, modDate, fkImg, userID} = req.body
+                const usuario = await new Usuar(email, senha, nome, nomePlum, modDate,fkImg, userID).getProfile()
                 return res.status(200).json(usuario)
         } 
         catch (error) 
@@ -85,9 +85,9 @@ export class UsuarController{
     }
 
     static async getUserImg(req, res){
-        const { email, senha, nome, nomePlum, modDate, fkImg, userID} = req.body
-        const usuario = await new Usuar(email, senha, nome, nomePlum, modDate,fkImg, userID).getImg()
-        return res.status(200).json(usuario)
+        const { email, senha, nome, nomePlum, statusUser, fkImg, userID} = req.body
+        const response = await new Usuar(email, senha, nome, nomePlum, statusUser, fkImg, userID).getImg()
+        return res.status(200).json(response)
     }
 
 }

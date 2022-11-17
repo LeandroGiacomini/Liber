@@ -109,7 +109,7 @@ export const Books = styled.div`
 
 `
 
-export const Capa = styled.img`
+export const CapaH = styled.img`
     width: 100%;
     height: 90%;
     
