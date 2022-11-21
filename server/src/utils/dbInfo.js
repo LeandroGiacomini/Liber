@@ -1,9 +1,9 @@
 export const db = {
-    server: 'DESKTOP-7C99J2K',
+    server: '10.68.102.4',
     port: 1433,
     user:'sa',
-    password:'0192',
-    database:'LiberT', 
+    password:'Admin2018@',
+    database:'LiberT',
     options:{
         enableArithAbort: true,
         encrypt: false, 

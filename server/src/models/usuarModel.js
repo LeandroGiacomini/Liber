@@ -81,7 +81,7 @@ export class Usuar{
             const { rowsAffected } = con.query(`insert into usuar values ('${this.email}', 
             '${this.senha}','${this.nome}', '${this.nomePlum}', ${this.statusUser}, 
             '${DateNow()}', '', ${this.fkImg})`)
-            return true
+            return rowsAffected
         } 
         catch (error) 
         {
