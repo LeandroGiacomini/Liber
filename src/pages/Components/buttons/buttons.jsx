@@ -1,4 +1,4 @@
-import { Botao, BotaoD } from "./style";
+import { Botao, BotaoD, Rotation } from "./style";
 
 export function Button({type, onClick, texto}){
     
@@ -24,4 +24,12 @@ export function Button2({type, onClick, texto}){
         </BotaoD>
     )
     
+}
+
+export function Rotate(){
+    return(
+        <Rotation>
+
+        </Rotation>
+    )
 }

@@ -43,11 +43,15 @@ export const InputDivD = styled.div`
 export const InputLabel = styled.label`
     background-color: white;
     color: black;
-    padding: 5px 8px;
-    border: 1px solid none;
+    height: 100%;
+    width: 100%;
+    text-align: center;
     border-radius: 5px;
     cursor: pointer;
     transition: all .3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover{
         background-color: #F05365;

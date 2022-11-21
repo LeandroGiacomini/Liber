@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { All } from "../../Style/all";
-import { Button2 } from "../Components/buttons/buttons";
+import { Button2, Rotate } from "../Components/buttons/buttons";
 import { DropFile, Inputs } from "../Components/inputs/inputs";
 import Axios from 'axios'
 import { useEffect } from "react";
@@ -33,9 +33,20 @@ export function Postar(){
         
     };
 
+    const [rotate, setRotate] = useState(false)
+    const BotaoRotate = () =>{
+        if (rotate == false){
+            return(
+                <Button2 type="button" texto="Enviar" onClick={() => Novo()}></Button2>         
+            )
+        }else if(rotate == true){
+            return(<Rotate></Rotate>)
+        }
+    }
+
 
     const Novo = () =>{
-
+            setRotate(true)
             const EusouumPalio = new AxiosUser().axiosCreatePost(image, pdf, text, gen)
 
     }
@@ -120,7 +131,7 @@ export function Postar(){
                             />
                         </Delimitar>
                         <Delimitar>
-                            <Button2 type="button" texto="Enviar" onClick={() => Novo()}></Button2>
+                            {BotaoRotate()}
                         </Delimitar>
                     </Faixa>
 

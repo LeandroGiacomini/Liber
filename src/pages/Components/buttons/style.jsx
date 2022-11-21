@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Terciaria } from "../../../Style/Paleta";
 
 export const Botao = styled.button`
 
@@ -41,5 +42,25 @@ export const BotaoD = styled.button`
             color: #F05365;
             cursor: pointer;
         }
+`
+
+export const Rotation = styled.div`
+
+    animation: is-rotating 1s infinite;
+    border: 6px solid #e5e5e5;
+    border-radius: 100%;
+    border-top-color: ${Terciaria};
+    height: 100%;
+    width: 100%;
+    max-height: 3rem;
+    max-width: 3rem;
+    
+
+    @keyframes is-rotating {
+    to {
+        transform: rotate(1turn);
+    }
+    }
+
 
 `

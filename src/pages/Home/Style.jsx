@@ -88,6 +88,10 @@ export const Books = styled.div`
     align-items: flex-start;
     justify-content: center;
 
+    &:hover, &:focus{
+        transition: 1s;
+        transform: translateY(8px) scale(1.1);
+    }
 
     a{
         text-decoration: none;

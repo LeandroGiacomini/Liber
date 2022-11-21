@@ -1,18 +1,17 @@
 import { useState, useEffect } from 'react'
 import { All } from '../../Style/all';
-import { Button } from '../Components/buttons/buttons';
+import { Button, Rotate } from '../Components/buttons/buttons';
 import { DropFile, Inputs } from '../Components/inputs/inputs';
 import { Adjust, AdjustImg, AdjustLogin, CadAlign, Cadastrar, Errado } from './style';
 import { AxiosUser } from '../../services/axios';
 import noProfile from '../../assets/noProfile.jpg'
 import validator from 'validator'
 export function Cadastro(){
-
-    const[values, setValues] = useState();
+    const [values, setValues] = useState()
     const[image, setImage] = useState(1)
     const[handleImg, setHandleImg] = useState(noProfile)
     const[email, setEmail] = useState()
-    const [disappear, setDisappear] = useState(values)
+    const [rotate, setRotate] = useState(false)
 
     const HandleChangeValues = (value) =>{
         setValues(prevValue =>({
@@ -35,9 +34,23 @@ export function Cadastro(){
             setEmail('Email, nome ou senha inválido!')
             console.log(image)
         }else if(validator.isEmail(values.email)){
+            setRotate(true)
             new AxiosUser().axiosIns(values, image)
         }else{
             setEmail('Email inválido!')
+        }
+    }
+    const BotaoRotate = () =>{
+        if (rotate == false){
+            return(
+                <Button 
+                    type="button" 
+                    onClick={() => Validar()} 
+                    texto="Cadastrar"
+                />           
+            )
+        }else if(rotate == true){
+            return(<Rotate></Rotate>)
         }
     }
 
@@ -102,11 +115,7 @@ export function Cadastro(){
                         {email && <Errado>{email}</Errado>}
 
                         <Adjust>
-                            <Button 
-                                type="button" 
-                                onClick={() => Validar()} 
-                                texto="Cadastrar"
-                            />
+                            {BotaoRotate()}
                         </Adjust>
                         
 
@@ -124,7 +133,8 @@ export function Cadastro(){
 export function Login(){
 
     const[values, setValues] = useState();
-    
+    const [rotate, setRotate] = useState(false)
+
     const HandleChangeValues = (value) =>{
         setValues(prevValue =>({
             ...prevValue,
@@ -132,10 +142,23 @@ export function Login(){
         }))
     };
 
+    
+    const BotaoRotate = () =>{
+        if (rotate == false){
+            return(
+               <Button type="button" onClick={() => HandleClickButton()} texto="Enviar"/>
+            )
+        }else if(rotate == true){
+            return(<Rotate></Rotate>)
+        }
+    }
+
+
     const HandleClickButton = () =>{
         if(!values.email || !values.senha){
             console.error("Certifique de que preencheu todos os campos!");
         }else{
+            setRotate(true)
             new AxiosUser().axiosLogin(values.email, values.senha)
         }
     }
@@ -157,7 +180,7 @@ export function Login(){
                             </Adjust>
 
                             <Adjust>
-                                <Button type="button" onClick={() => HandleClickButton()} texto="Enviar"/>
+                                {BotaoRotate()}
                             </Adjust>
                         </AdjustLogin>
                         

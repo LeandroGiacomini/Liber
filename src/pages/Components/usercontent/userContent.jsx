@@ -67,8 +67,7 @@ export function MyProfile({user, liv}){
     }
 
     const Obras = ()=>{
-        console.log(!liv)
-        if(liv){
+        if(!liv){
             return(<></>)
         }else{
             return(typeof liv !== 'undefined' && liv.map((value)=>{

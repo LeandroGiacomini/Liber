@@ -13,7 +13,6 @@ export function UserPage(){
     const params = useParams() 
     const [user, setUser] = useState('')
     const [livs, setLivs] = useState('')
-
     useEffect(() => {
         new AxiosUser().axiosGet(params.userID).then((response)=>{
             console.log(response)

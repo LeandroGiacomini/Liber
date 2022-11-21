@@ -94,7 +94,7 @@ export class AxiosUser{
                     email:values.email,
                     senha:values.senha,
                     fkImg: imgID
-                }).then(()=>{})
+                }).then(()=>{window.location.replace('/Login')})
 
             }
             
