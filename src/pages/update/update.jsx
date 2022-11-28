@@ -55,7 +55,7 @@ export function Update() {
                     </Adjust>
 
                     <Adjust>
-                        <Button type='button' onClick={() => window.location.replace(`Perfil/../${getToken().nome}`, {replace: true})} texto="Cancelar" ></Button>
+                        <Button type='button' onClick={() => window.location.replace(`Perfil/../${getToken().userID}`, {replace: true})} texto="Cancelar" ></Button>
                     </Adjust>
                    
                 </Cadastrar>

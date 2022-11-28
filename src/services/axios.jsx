@@ -161,12 +161,10 @@ export class AxiosUser{
             const newImg = img.data[0].imgID
 
             const teste = {
-                email: inf.email,
                 fkImg: newImg,
                 insertDate: getToken().insertDate,
                 modDate: Data(),
                 nome: inf.nome,
-                senha: inf.senha,
                 statusUser: inf.statusUser,
                 userID: getToken().userID
             }
@@ -174,13 +172,11 @@ export class AxiosUser{
             Axios.put(`${localhost}/usuario/update/${getToken().userID}`,{
                 statusUser: 1,
                 fkImg: newImg,
-                email: inf.email,
                 nome: inf.nome,
-                senha: inf.senha
             }).then(() =>{
                 localStorage.removeItem(Token)
                 localStorage.setItem(Token, JSON.stringify(teste))
-                window.location.replace(`/Perfil/${teste.nome}`)
+                window.location.replace(`/Perfil/${teste.userID}`)
             })    
         } 
         catch (error) 

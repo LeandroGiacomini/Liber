@@ -35,13 +35,16 @@ export function Home(){
                         <Separar>
                             <Margem>
                                     <h1>Recém lançados</h1>
-                                    <a href='#'>Ver mais</a>
+                                    <a href='/Livros'>Ver mais</a>
                             </Margem>
                             
                             <Content>
                                 
                                 {typeof post !== 'undefined' && post.map((value)=>{
+                                  
+                                
                                     return(
+                                        
                                         <Books key={value.postID}>
                                             <a href={`/Livro/${value.postID}`}>
                                                 <CapaH src={value.pathImg}/>

@@ -7,6 +7,7 @@ import { UserPage } from './pages/UserPage/UserPage.jsx'
 import { Update } from './pages/update/update.jsx'
 import { Postar } from './pages/Postar/postar.jsx'
 import { Livro } from './pages/livro/livro.jsx'
+import { AllLiv } from './pages/allLiv/allLiv.jsx'
 
 
 export function Rotas(){
@@ -28,6 +29,8 @@ export function Rotas(){
                         <Route path="/Post/Create" element={<Postar />}></Route>
 
                         <Route path="/Livro/:postID" element={<Livro />}></Route>
+
+                        <Route path="/Livros" element={<AllLiv />}></Route>
 
                     </Routes>
                 
